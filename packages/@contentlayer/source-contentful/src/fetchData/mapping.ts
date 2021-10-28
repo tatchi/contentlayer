@@ -175,10 +175,10 @@ const getDataForFieldDef = ({
       case 'date':
         return new Date(rawFieldData)
       case 'markdown':
-        const html = yield* $(core.markdownToHtml({ mdString: rawFieldData, options: options?.markdown }))
+        const html = yield* $(core.markdownToHtml({ mdString: rawFieldData, options: options.markdown }))
         return <core.Markdown>{ raw: rawFieldData, html }
       case 'mdx':
-        const code = yield* $(core.bundleMDX({ mdxString: rawFieldData, options: options?.mdx }))
+        const code = yield* $(core.bundleMDX({ mdxString: rawFieldData, options: options.mdx }))
         return <core.MDX>{ raw: rawFieldData, code }
       case 'string':
         // e.g. for images

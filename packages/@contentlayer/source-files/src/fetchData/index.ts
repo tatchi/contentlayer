@@ -135,7 +135,7 @@ const updateCacheEntry = ({
         }),
         These.effectTapSuccess((cacheItem) =>
           T.succeedWith(() => {
-            cache!.cacheItemsMap[event.relativeFilePath] = cacheItem
+            cache.cacheItemsMap[event.relativeFilePath] = cacheItem
           }),
         ),
         These.effectTapErrorOrWarning((errorOrWarning) =>

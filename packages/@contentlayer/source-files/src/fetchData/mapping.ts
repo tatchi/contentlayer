@@ -76,8 +76,7 @@ export const makeDocument = ({
 
 type MakeDocumentInternalError = UnexpectedMarkdownError | UnexpectedMDXError | InvalidDataDuringMappingError
 
-const rawContentHasBody = (_: RawContent): _ is RawContentMarkdown | RawContentMDX =>
-  'body' in _ && _.body !== undefined
+const rawContentHasBody = (_: RawContent): _ is RawContentMarkdown | RawContentMDX => 'body' in _
 
 export const getFlattenedPath = (relativeFilePath: string): string =>
   relativeFilePath
@@ -205,10 +204,10 @@ const getDataForFieldDef = ({
       case 'date':
         return new Date(rawFieldData)
       case 'markdown':
-        const html = yield* $(core.markdownToHtml({ mdString: rawFieldData, options: options?.markdown }))
+        const html = yield* $(core.markdownToHtml({ mdString: rawFieldData, options: options.markdown }))
         return <core.Markdown>{ raw: rawFieldData, html }
       case 'mdx':
-        const code = yield* $(core.bundleMDX({ mdxString: rawFieldData, options: options?.mdx }))
+        const code = yield* $(core.bundleMDX({ mdxString: rawFieldData, options: options.mdx }))
         return <core.MDX>{ raw: rawFieldData, code }
       case 'boolean':
       case 'string':

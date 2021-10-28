@@ -48,7 +48,7 @@ export const makeSource: core.MakeSourcePlugin<Args> = async (args) => {
 
   return {
     type: 'local',
-    extensions: extensions ?? {},
+    extensions,
     options,
     provideSchema: pipe(
       makeCoreSchema({ documentTypeDefs, options }),

@@ -137,11 +137,9 @@ export const makeCacheItemFromFilePath = ({
       const computedValues = yield* $(
         getComputedValues({ documentTypeDef, document, documentFilePath: relativeFilePath }),
       )
-      if (computedValues) {
-        Object.entries(computedValues).forEach(([fieldName, value]) => {
-          document[fieldName] = value
-        })
-      }
+      Object.entries(computedValues).forEach(([fieldName, value]) => {
+        document[fieldName] = value
+      })
 
       return These.warnOption({ document, documentHash, hasWarnings: O.isSome(warnings) }, warnings)
     }),
@@ -219,11 +217,7 @@ const getComputedValues = ({
   documentTypeDef: core.DocumentTypeDef
   document: core.Document
   documentFilePath: string
-}): T.Effect<unknown, FetchDataError.ComputedValueError, undefined | Record<string, any>> => {
-  if (documentTypeDef.computedFields === undefined) {
-    return T.succeed(undefined)
-  }
-
+}): T.Effect<unknown, FetchDataError.ComputedValueError, Record<string, any>> => {
   return pipe(
     documentTypeDef.computedFields,
     T.forEachParDict({
